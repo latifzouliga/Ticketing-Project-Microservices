@@ -20,7 +20,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  userservice:
+  user-service:
     image: ${GROUP_ID}/user-service:${SERVICE_VERSION:-latest}
     environment:
       - "PROFILE=dev"
@@ -32,7 +32,7 @@ services:
       - "9090:9090"
     networks:
       - backend
-  projectservice:
+  project-service:
     image: ${GROUP_ID}/project-service:${SERVICE_VERSION:-latest}
     environment:
       - "PROFILE=dev"
@@ -44,7 +44,7 @@ services:
       - "9091:9091"
     networks:
       - backend
-  taskservice:
+  task-service:
     image: ${GROUP_ID}/task-service:${SERVICE_VERSION:-latest}
     environment:
       - "PROFILE=dev"
@@ -54,6 +54,12 @@ services:
         condition: service_healthy
     ports:
       - "9092:9092"
+    networks:
+      - backend
+  discovery-service:
+    image: ${GROUP_ID}/discovery-service:${SERVICE_VERSION:-latest}
+    ports:
+      - "8761:8761"
     networks:
       - backend
 networks:
