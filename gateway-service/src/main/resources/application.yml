@@ -7,28 +7,37 @@ spring:
         locator:
           enabled: false
           lower-case-service-id: true
-#      routes:
-#        - id: user-service
-#          uri: lb://user-service
-#          predicates:
-#            - Path=/cydeo/dev/user/**
-#          filters:
-#            - RewritePath=/cydeo/dev/user/(?<segment>.*),/$\{segment} # pass the endpoint too
-#        - id: project-service
-#          uri: lb://project-service
-#          predicates:
-#            - Path=/cydeo/dev/project/**
-#          filters:
-#            - RewritePath=/cydeo/dev/project/(?<segment>.*),/$\{segment}
-#        - id: task-service
-#          uri: lb://task-service
-#          predicates:
-#            - Path=/cydeo/dev/task/**
-#          filters:
-#            - RewritePath=/cydeo/dev/task/(?<segment>.*),/$\{segment}
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/cydeo/dev/user/**
+          filters:
+            - RewritePath=/cydeo/dev/user/(?<segment>.*),/$\{segment} # pass the endpoint too
+        - id: project-service
+          uri: lb://project-service
+          predicates:
+            - Path=/cydeo/dev/project/**
+          filters:
+            - RewritePath=/cydeo/dev/project/(?<segment>.*),/$\{segment}
+        - id: task-service
+          uri: lb://task-service
+          predicates:
+            - Path=/cydeo/dev/task/**
+          filters:
+            - RewritePath=/cydeo/dev/task/(?<segment>.*),/$\{segment}
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://host.docker.internal:94
+
+
 
 server:
   port: 8762
+
+
 
 eureka:
   instance:

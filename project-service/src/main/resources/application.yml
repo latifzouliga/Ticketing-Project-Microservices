@@ -15,8 +15,18 @@ spring:
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://host.docker.internal:94
+
+
+
 server:
   port: 9091
+
+
 
 eureka:
   instance:
