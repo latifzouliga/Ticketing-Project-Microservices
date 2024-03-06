@@ -33,3 +33,49 @@ public class Task extends BaseEntity {
     private Project project;
 
 }
+
+/*
+  {
+    "taskSubject": "Building APIs",
+    "taskDetail":"Building API with java and spring boot framework",
+    "taskStatus":"OPEN",
+    "assignedDate":"2024-10-10",
+    "assignedEmployee":{
+            "id": 5,
+            "firstName": "mike",
+            "lastName": "mike",
+            "userName": "mike",
+            "enabled": false,
+            "phone": "1231231231",
+            "role": {
+                "id": 3,
+                "description": "Employee"
+            },
+            "gender": "MALE"
+        },
+    "project":{
+            "id": null,
+            "projectName": "API Project",
+            "projectCode": "PRJ01",
+            "assignedManager": {
+                "id": 3,
+                "firstName": "lat",
+                "lastName": "zoulig",
+                "userName": "zouliga",
+                "enabled": false,
+                "phone": "1231231231",
+                "role": {
+                    "id": 2,
+                    "description": "Manager"
+                },
+                "gender": "MALE"
+            },
+            "startDate": null,
+            "endDate": null,
+            "projectDetail": "This is a sample project",
+            "projectStatus": "IN_PROGRESS",
+            "completeTaskCounts": 0,
+            "unfinishedTaskCounts": 0
+        }
+  }
+ */

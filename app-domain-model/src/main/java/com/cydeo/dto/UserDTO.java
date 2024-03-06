@@ -26,3 +26,21 @@ public class UserDTO {
     private RoleDTO role;
     private Gender gender;
 }
+
+//  localhost:8762/cydeo/user/api/v1/user
+/*
+{
+    "firstName": "lat",
+    "lastName": "zoulig",
+    "userName": "lat",
+    "passWord": "Abc1",
+    "confirmPassword": "Abc1",
+    "phone": "1231231231",
+   "gender": "MALE",
+   "role": {
+       "id":2,
+       "description":"manager"
+   }
+}
+
+ */

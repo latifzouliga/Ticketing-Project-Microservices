@@ -37,3 +37,46 @@ public class ProjectDTO {
 
 
 }
+
+/*
+ localhost:8762/cydeo/project/api/v1/project
+{
+  "id": 1,
+  "projectName": "Sample Project",
+  "projectCode": "PRJ001",
+  "assignedManager": null,
+  "startDate": "2024-03-01",
+  "endDate": "2024-04-01",
+  "projectDetail": "This is a sample project",
+  "projectStatus": "IN_PROGRESS",
+  "completeTaskCounts": 0,
+  "unfinishedTaskCounts": 0
+}
+ */
+
+/*
+   {
+  "id":10,
+  "projectName": "API Project",
+  "projectCode": "PRJ01",
+  "assignedManager": {
+            "id": 3,
+            "firstName": "lat",
+            "lastName": "zoulig",
+            "userName": "zouliga",
+            "enabled": false,
+            "phone": "1231231231",
+            "role": {
+                "id": 2,
+                "description": "Manager"
+            },
+            "gender": "MALE"
+        },
+  "startDate": "2024-03-01",
+  "endDate": "2024-04-01",
+  "projectDetail": "This is a sample project",
+  "projectStatus": "IN_PROGRESS",
+  "completeTaskCounts": 0,
+  "unfinishedTaskCounts": 0
+}
+ */
