@@ -22,7 +22,8 @@ import java.util.stream.Collectors;
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
-    private final MapperUtil mapperUtil;;
+    private final MapperUtil mapperUtil;
+    ;
     private final UserClientService userClientService;
 
     public TaskServiceImpl(TaskRepository taskRepository, MapperUtil mapperUtil, UserClientService userClientService) {
@@ -35,24 +36,24 @@ public class TaskServiceImpl implements TaskService {
     public TaskDTO findById(Long id) {
 
         Optional<Task> task = taskRepository.findById(id);
-        if(task.isPresent()){
+        if (task.isPresent()) {
 //            return taskMapper.convertToDTO(task.get());
-            return mapperUtil.convert(task.get(),new TaskDTO());
+            return mapperUtil.convert(task.get(), new TaskDTO());
         }
-        return null ;
+        return null;
     }
 
     @Override
     public List<TaskDTO> listAllTasks() {
         List<Task> list = taskRepository.findAll();
-        return list.stream().map(obj -> mapperUtil.convert(obj,new TaskDTO())).collect(Collectors.toList());
+        return list.stream().map(obj -> mapperUtil.convert(obj, new TaskDTO())).collect(Collectors.toList());
     }
 
     @Override
     public void save(TaskDTO dto) {
         dto.setTaskStatus(Status.OPEN);
         dto.setAssignedDate(LocalDate.now());
-        Task task = mapperUtil.convert(dto,new Task());
+        Task task = mapperUtil.convert(dto, new Task());
         taskRepository.save(task);
     }
 
@@ -60,9 +61,9 @@ public class TaskServiceImpl implements TaskService {
     public void update(TaskDTO dto) {
 
         Optional<Task> task = taskRepository.findById(dto.getId());
-        Task convertedTask = mapperUtil.convert(dto,new Task());
+        Task convertedTask = mapperUtil.convert(dto, new Task());
 
-        if(task.isPresent()){
+        if (task.isPresent()) {
             convertedTask.setId(task.get().getId());
             convertedTask.setTaskStatus(dto.getTaskStatus() == null ? task.get().getTaskStatus() : dto.getTaskStatus());
             convertedTask.setAssignedDate(task.get().getAssignedDate());
@@ -76,7 +77,7 @@ public class TaskServiceImpl implements TaskService {
 
         Optional<Task> foundTask = taskRepository.findById(id);
 
-        if(foundTask.isPresent()){
+        if (foundTask.isPresent()) {
             foundTask.get().setIsDeleted(true);
             taskRepository.save(foundTask.get());
         }
@@ -112,10 +113,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDTO> listAllTasksByStatusIsNot(Status status) {
 
-        User loggedInUser = mapperUtil.convert(userClientService.getUserDTOByUserName("john@employee.com"),new User());
+        User loggedInUser = mapperUtil.convert(userClientService.getUserDTOByUserName("john@employee.com"), new User());
 
         List<Task> list = taskRepository.findAllByTaskStatusIsNotAndAssignedEmployee(status, loggedInUser);
-        return list.stream().map(obj -> mapperUtil.convert(obj,new TaskDTO())).collect(Collectors.toList());
+        return list.stream().map(obj -> mapperUtil.convert(obj, new TaskDTO())).collect(Collectors.toList());
     }
 
     @Override
@@ -133,21 +134,21 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDTO> listAllTasksByStatus(Status status) {
 
-        User loggedInUser = mapperUtil.convert(userClientService.getUserDTOByUserName("john@employee.com"),new User());
+        User loggedInUser = mapperUtil.convert(userClientService.getUserDTOByUserName("john@employee.com"), new User());
         List<Task> list = taskRepository.findAllByTaskStatusAndAssignedEmployee(status, loggedInUser);
-        return list.stream().map(obj -> mapperUtil.convert(obj,new TaskDTO())).collect(Collectors.toList());
+        return list.stream().map(obj -> mapperUtil.convert(obj, new TaskDTO())).collect(Collectors.toList());
     }
 
     @Override
     public List<TaskDTO> readAllByAssignedEmployee(User assignedEmployee) {
         List<Task> list = taskRepository.findAllByAssignedEmployee(assignedEmployee);
-        return list.stream().map(obj -> mapperUtil.convert(obj,new TaskDTO())).collect(Collectors.toList());
+        return list.stream().map(obj -> mapperUtil.convert(obj, new TaskDTO())).collect(Collectors.toList());
     }
 
     private List<TaskDTO> listAllByProject(ProjectDTO project) {
 
-        List<Task> list = taskRepository.findAllByProject(mapperUtil.convert(project,new Project()));
-        return list.stream().map(obj -> mapperUtil.convert(obj,new TaskDTO())).collect(Collectors.toList());
+        List<Task> list = taskRepository.findAllByProject(mapperUtil.convert(project, new Project()));
+        return list.stream().map(obj -> mapperUtil.convert(obj, new TaskDTO())).collect(Collectors.toList());
     }
 
 }

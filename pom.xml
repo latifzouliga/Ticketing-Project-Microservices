@@ -111,7 +111,6 @@
                 <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
                 <version>${resilience4j.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-aop</artifactId>
