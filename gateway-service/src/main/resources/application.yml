@@ -30,7 +30,7 @@ spring:
     sampler:
       probability: 1
   zipkin:
-    base-url: http://host.docker.internal:94
+    base-url: http://host.docker.internal:9411
 
 
 
