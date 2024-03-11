@@ -36,6 +36,7 @@
         <spring-cloud.version>2.2.6.RELEASE</spring-cloud.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <resilience4j.version>2.1.3</resilience4j.version>
+        <micrometer-rgistry-prometheus.version>1.9.0</micrometer-rgistry-prometheus.version>
     </properties>
 
     <dependencyManagement>
@@ -125,6 +126,17 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-sleuth-zipkin</artifactId>
                 <version>${spring-cloud.version}</version>
+            </dependency>
+            <!--        micrometer and micrometer-registry-prometheus are for enabling graphana-->
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-core</artifactId>
+                <version>${micrometer-rgistry-prometheus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>${micrometer-rgistry-prometheus.version}</version>
             </dependency>
 
             <dependency>

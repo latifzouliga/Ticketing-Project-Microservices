@@ -82,6 +82,16 @@
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
         </dependency>
 
+<!--        micrometer and micrometer-registry-prometheus are for enabling graphana-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
 
     </dependencies>
 

@@ -13,8 +13,10 @@ import com.cydeo.service.ProjectService;
 import com.cydeo.service.UserClientService;
 import com.cydeo.util.MapperUtil;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import lombok.Builder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -107,6 +109,7 @@ public class ProjectServiceImpl implements ProjectService {
 //        taskService.completeByProject(projectMapper.convertToDto(project));
     }
 
+
     @CircuitBreaker(name = "user-service", fallbackMethod = "userServiceFallBack")
     @Override
     public List<ProjectDTO> listAllProjectDetails(String userName) throws ProjectServiceException {
@@ -117,23 +120,23 @@ public class ProjectServiceImpl implements ProjectService {
         if (user != null) {
             List<Project> list = projectRepository.findAllByAssignedManagerId(user.getId());
 
-            if (list.size() == 0) {
+            if (list.isEmpty()) {
                 throw new ProjectServiceException("This manager does not have any project assigned");
             }
 
-            return list.stream().map(project -> {
-                ProjectDTO projectDTO = new ProjectDTO();
-                projectDTO.setProjectDetail(project.getProjectDetail());
-                projectDTO.setProjectStatus(project.getProjectStatus());
-                projectDTO.setProjectName(project.getProjectName());
-                projectDTO.setProjectCode(project.getProjectCode());
-                projectDTO.setAssignedManager(user);
-                return projectDTO;
-            }).collect(Collectors.toList());
+            return list.stream()
+                    .map(project -> {
+                        ProjectDTO projectDTO = new ProjectDTO();
+                        projectDTO.setProjectDetail(project.getProjectDetail());
+                        projectDTO.setProjectStatus(project.getProjectStatus());
+                        projectDTO.setProjectName(project.getProjectName());
+                        projectDTO.setProjectCode(project.getProjectCode());
+                        projectDTO.setAssignedManager(user);
+                        return projectDTO;
+                    }).collect(Collectors.toList());
         }
         throw new ProjectServiceException("user couldn't find");
     }
-
 
     @Override
     public List<ProjectDTO> readAllByAssignedManager(User user) {
@@ -150,8 +153,20 @@ public class ProjectServiceImpl implements ProjectService {
                 .collect(Collectors.toList());
     }
 
-    private List<ProjectDTO> userServiceFallBack(String userName, Exception e){
-        return new ArrayList<>();
+    private List<ProjectDTO> userServiceFallBack(String userName, Exception e) {
+        return List.of(
+                ProjectDTO.builder()
+                        .projectName("null")
+                        .projectCode("null")
+                        .assignedManager(new UserDTO())
+                        .startDate(LocalDate.now())
+                        .endDate(LocalDate.now())
+                        .projectDetail("null")
+                        .completeTaskCounts(0)
+                        .unfinishedTaskCounts(0)
+                        .build()
+        );
+
     }
 
 
