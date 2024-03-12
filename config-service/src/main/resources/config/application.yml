@@ -13,7 +13,7 @@ spring:
           uri: https://github.com/latifzouliga/Ticketing-Project-Microservices-Config
           default-label: main
           username: latifzouliga
-          password: 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
+          password: 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
       fail-fast: true
 
 server:
