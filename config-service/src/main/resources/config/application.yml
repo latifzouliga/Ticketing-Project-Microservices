@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git
+  # active: native  # native -> read from file system
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config
+        git:
+          uri: https://github.com/latifzouliga/Ticketing-Project-Microservices-Config
+          default-label: main
+          username: latifzouliga
+          password: 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
+      fail-fast: true
+
+server:
+  port: 8888
