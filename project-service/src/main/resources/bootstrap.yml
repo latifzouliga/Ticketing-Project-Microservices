@@ -11,3 +11,5 @@ spring:
       retry:
         max-attempts: 200
         max-interval: 10000
+
+# http://configserver:8888/project-service/project_service

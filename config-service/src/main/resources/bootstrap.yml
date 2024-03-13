@@ -1,23 +1,23 @@
-#spring:
-#  application:
-#    name: config-server
-#  profiles:
+spring:
+  application:
+    name: config-server
+  profiles:
 #    active: native
-##    active: git
-#  cloud:
-#    config:
-#      server:
-#        native:
-#          search-locations: class:/config
-#        git:
-#          uri: https://github.com/Cydeo-JD-AL004/ticketing-project-microservices-config.git
-#          default-label: master
-#          username: CundullahT-CT
-#          password: '{cipher}11c1a0eb4421592f4d4913fa52971a70896067b7f9b033d56420bac609acee8d4e910f1241c11244dd2cec54156f0ff0efdea2c189fe7fc13f36e058fce30415'
-#      fail-fast: true
+    active: git
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config
+        git:
+          uri: https://github.com/latifzouliga/Ticketing-Project-Microservices-Config.git
+          default-label: main
+          username: latifzouliga
+          password: '{cipher}709bb919b6fe212674bd315e548800afcb7d959db753b77e0fabd3e33ee1b0e4f228379c74878f47445c767e1442e906c95be8c24ef4042e463515e6f8d4c241'
+      fail-fast: true
 
-#encrypt:
-#  key: cydeo
-#
-#server:
-#  port: 8888
+encrypt:
+  key: cydeo
+
+server:
+  port: 8888
